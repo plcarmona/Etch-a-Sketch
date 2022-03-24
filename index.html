@@ -10,14 +10,28 @@
 
     <title>Hello, world!</title>
   </head>
-    <body class="container text-center bg-dark">
-        <div class="display-3 text-primary">Etch a Sketch</div>
+    <body class="container text-center bg-dark w-100">
+        <div id="id"class="display-3 text-primary">Etch a Sketch</div>
         <div id="container">
             
 
 
         </div>
+        <div class="container px-100">
+          <button id='btn1'class="btn btn-primary">Reset</button>
 
+          <button id='btn1'class="btn btn-primary">Black</button>
+
+          <button id='btn1'class="btn btn-primary">Rainbow</button>
+
+          <button id='btn1'class="btn btn-primary">Custom</button>
+        </div>
+        <div id="range" class="text-white">Grid size =
+              <script>
+              document.getElementById("range").textContent+=document.getElementById("customRange").value;
+              </script>
+              <input type="range" class="custom-range" min="0" max="100" step="1" id="customRange">
+        </div>
 
 
 
