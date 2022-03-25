@@ -27,10 +27,10 @@
           <button id='btn1'class="btn btn-primary">Custom</button>
         </div>
         <div id="range" class="text-white">Grid size =
-              <script>
-              document.getElementById("range").textContent+=document.getElementById("customRange").value;
-              </script>
-              <input type="range" class="custom-range" min="0" max="100" step="1" id="customRange">
+            
+              <input type="range" class="custom-range" min="0" max="100" step="1" id="customRange" 
+              onChange="document.getElementById('rangeval').innerText = document.getElementById('customRange').value">
+              <span id="rangeval">50</span>
         </div>
 
 
