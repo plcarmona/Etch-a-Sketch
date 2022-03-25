@@ -1,10 +1,10 @@
 const container= document.querySelector('#container');
 container.className+= " d-flex flex-row justify-content-center"
-
 function rowel(ss){
- for(i=0;i<ss;i++){
+
     const container= document.querySelector('#container');
     container.className+= " d-flex flex-row justify-content-center"
+ for(i=0;i<ss;i++){
 
     const col = document.createElement('col');
     col.classList.add=('div');
@@ -37,23 +37,18 @@ document.querySelector('body').addEventListener('mouseup',
 );
 
 var ss=document.getElementById('customRange').value;
-var sc="black";
-var color="black";
-var re=255;
-var gr=0;
-var bl=0;
+var sc='r';
+let arr= [255,0,0];
 var step=50;
+var ind = 1;
+
 // desde aqui sera crear la funcion para pintar con clik
 function colorear(){
-   for(i=0;i<ss;i++){
-      for(j=0;j<ss;j++){
          if(click){
-            this.addEventListener('mouseover',
-            this.style.backgroundColor=scolor(2));
+            this.style.backgroundColor=color;
+            scolor(ind);
             
 
-         }
-      }
    }
 }
 function clear(){
@@ -63,7 +58,9 @@ function clear(){
    container.id='container';
    const id= document.querySelector('#id');
    id.appendChild(container);
-   rowel(ss)
+   rowel(ss);
+   color=scolor(1);
+   colorear();
 }
 
 const range = document.querySelector('#customRange')
@@ -74,56 +71,43 @@ const btn1 = document.querySelector('#btn1')
 btn1.onclick=() =>clear();
 
 const btn2 = document.querySelector('#btn2')
-btn2.onclick=()=>rowel(ss);
+btn2.onclick=()=>ind=1;
+const btn3 = document.querySelector('#btn3')
+btn3.onclick=()=>ind=2;
 
-function trans(r,g,b,step){
-   if(r=255 && (b>=step&&b<=255)){
-      b=b-step;
-   if(r=255 && b<= step){
-      b=0;
-      g=g+step;
-      if(g>=255){
-         g=255;
+const fav= document.querySelector('#favcolor')
+fav.oninput=() =>ind=3;
+
+function trans(){
+   var str='rgb'
+   var i=str.indexOf(sc);
+   var j=(i+1)%3;
+   var k=(j+1)%3;
+   if(arr[i]<=510){
+      arr[i]=arr[i]+1;
+      if(arr[i]>510){
+         arr[i]=255;
+         arr[j]=0;
+         arr[k]=0;
+         sc=str.charAt((j));
       }
    }
-
-   }
-   if(g=255 && (r<=0&&r<255)){
-      r=r-step;
-   if(g=255 && r<=step)
-      r=0;
-      b=b=step;
-      if(b>=255){
-         b=255;
-      }
-   }
-   if(b=255 && (g<=0&&g<255)){
-      g=g-step;
-   if(b=255 && g<= step){
-      g=0;
-      r=r+step;
-      if(r>=255){
-         r=255;
-      }
-   }
-   re=r;
-   gr=g;
-   bl=b;
-
-   }
-   console.log(r+","+g+","+b+","+re+","+gr+","+bl)
-   return "rgb("+r+","+g+","+b+")";
+   color="rgb("+arr[0]+","+arr[1]+","+arr[2]+")";
+   
+  
+   
 }
 function scolor(i){
   
    if(i==1){
-      color="black"
+      color='black';
    }
    if(i==2){
-      color=trans(re,gr,bl,50);
-      }
-
-      
+      trans();
+   }
+   if(i==3){
+      color=document.getElementById('favcolor').value;
+   }
    }
 
 
@@ -132,3 +116,4 @@ function scolor(i){
 
 
 colorear();
+rowel(ss);
